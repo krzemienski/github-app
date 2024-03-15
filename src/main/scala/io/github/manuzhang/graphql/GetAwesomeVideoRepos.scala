@@ -6,10 +6,10 @@ import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Future}
 import scala.util.{Failure, Success, Try}
 
-object GetAwesomeStreamingRepos extends GraphQlApp {
+object GetAwesomeVideoRepos extends GraphQlApp {
 
   override def run():Unit = {
-    val readme = getReadme("manuzhang", "awesome-streaming")
+    val readme = getReadme("krzemienski", "awesome-video")
 
     val fs = readme.split("\n").map(_.split(" - ")).collect {
       case parts if parts.length == 2 =>
@@ -81,7 +81,7 @@ object GetAwesomeStreamingRepos extends GraphQlApp {
     }.filter(_.nonEmpty).map(_.get).toList
 
     val json = Await.result(Future.sequence(fs), Duration.Inf).render(indent = 2)
-    os.write.over(os.pwd / "awesome-streaming-repos.json", json)
+    os.write.over(os.pwd / "awesome-video-repos.json", json)
   }
 
   def getReadme(owner: String, name: String): String = {

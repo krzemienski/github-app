@@ -1,5 +1,5 @@
 query GetStarredRepos($cursor: String!) {
-  user(login: "manuzhang") {
+  user(login: "krzemienski") {
     starredRepositories(after: $cursor) {
       pageInfo {
         hasNextPage
